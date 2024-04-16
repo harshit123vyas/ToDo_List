@@ -1,7 +1,7 @@
 package com.task.todolist.repository;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,5 +20,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 	
 
     @Query("select t from Task t where t.date <= :date")
-    List<Task> findAllTaskByDate(@Param("date") LocalDate creationDateTime);
+    List<Task> findAllTaskByDate(@Param("date") LocalDate creationDate);
 }
