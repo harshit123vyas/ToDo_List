@@ -88,7 +88,8 @@ public class TaskServiceImp implements TaskService{
 					task.setCompletionDate(newTask.getCompletionDate());
 				}
 					return taskRepository.save(task);
-
+					
+		
 			}
 			
 		} catch (Exception e) {
@@ -115,9 +116,10 @@ public class TaskServiceImp implements TaskService{
 	}
 
 	@Override
-	public List<Task> getAllTaskByDate(LocalDate date) {
+	public List<Task> getAllRemainningTask() {
 		
-		return taskRepository.findAllTaskByDate(date);
+		LocalDate date=LocalDate.now();
+		return taskRepository.getAllRemainningTask(date);
 	}
 
 }
