@@ -83,7 +83,7 @@ public class TaskController {
 	public ResponseEntity<String> deleteTaskById(@PathVariable Integer id){
 		log.info("deleting task by id ");
 		if(taskService.deleteTaskById(id)) {
-			return new ResponseEntity<String>("Task deleted",HttpStatus.OK);
+			return new ResponseEntity<String>("Task deleted successfully",HttpStatus.OK);
 		}
 		else {
 			return new ResponseEntity<String>("Task not with given id not exist ",HttpStatus.NOT_FOUND);
