@@ -1,5 +1,6 @@
 package com.task.todolist.entity;
 
+
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -31,6 +32,8 @@ public class Task {
 	private String description;
 	
 	@CreationTimestamp
-	private LocalDate date;
+	private LocalDate creationDate;
+	
+	private Date completionDate;
 
 }

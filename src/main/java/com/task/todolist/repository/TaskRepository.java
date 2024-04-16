@@ -19,6 +19,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 	public Optional<Task> findByTitle(String title);
 	
 
-    @Query("select t from Task t where t.date <= :date")
-    List<Task> findAllTaskByDate(@Param("date") LocalDate creationDate);
+    @Query("select t from Task t where t.creationDate <= :creationDate")
+    List<Task> findAllTaskByDate(@Param("creationDate") LocalDate creationDate);
 }

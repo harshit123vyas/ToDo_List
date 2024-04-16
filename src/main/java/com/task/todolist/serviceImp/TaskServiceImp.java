@@ -74,19 +74,19 @@ public class TaskServiceImp implements TaskService{
 	@Override
 	public Task updateTask(Task newTask, Integer id) {
 		try {
-			Optional<Task> task = taskRepository.findById(id);
+			Task task = taskRepository.findById(id).get();
 			log.info("task "+task);
-			if(task.isPresent()) {
-				if(!newTask.getTitle().equals(null)) {
-					task.get().setTitle(newTask.getTitle());
+			if(task!=null) {
+				if(newTask.getTitle()!=null) {
+					task.setTitle(newTask.getTitle());
 				}
-				if(!newTask.getDescription().equals(null)) {
-					task.get().setDescription(newTask.getDescription());
+				if(newTask.getDescription()!=null) {
+					task.setDescription(newTask.getDescription());
 				}
-				if(!newTask.getDate().equals(null)) {
-					task.get().setDate(newTask.getDate());
+				if(newTask.getCompletionDate()!=null) {
+					task.setCompletionDate(newTask.getCompletionDate());
 				}
-				return taskRepository.save(task.get());
+					return taskRepository.save(task);
 			}
 			
 		} catch (Exception e) {
