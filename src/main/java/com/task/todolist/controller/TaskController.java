@@ -66,11 +66,17 @@ public class TaskController {
 		}
 	}
 	
-//	@PutMapping("/{id}")
-//	public ResponseEntity<Task> updateTask(@RequestBody Task task,@PathVariable Integer id){
-//		log.info("updating the task");
-//		Task updatedTask=taskService
-//	}
+	@PutMapping("/{id}")
+	public ResponseEntity<Task> updateTask(@RequestBody Task task,@PathVariable Integer id){
+		log.info("updating the task");
+		Task updatedTask=taskService.getTaskById(id);
+		if(updatedTask!=null) {
+			return new ResponseEntity<Task>(taskService.updateTask(updatedTask, id),HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Task>(updatedTask,HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	
 	@DeleteMapping("/{id}")
