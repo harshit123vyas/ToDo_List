@@ -76,6 +76,7 @@ public class TaskServiceImp implements TaskService{
 		try {
 			Task task = taskRepository.findById(id).get();
 			log.info("task "+task);
+
 			if(task!=null) {
 				if(newTask.getTitle()!=null) {
 					task.setTitle(newTask.getTitle());
@@ -87,6 +88,7 @@ public class TaskServiceImp implements TaskService{
 					task.setCompletionDate(newTask.getCompletionDate());
 				}
 					return taskRepository.save(task);
+
 			}
 			
 		} catch (Exception e) {
