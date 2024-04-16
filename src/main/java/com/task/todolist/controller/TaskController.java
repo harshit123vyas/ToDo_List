@@ -91,5 +91,17 @@ public class TaskController {
 		}
 	}
 	
+	@GetMapping("/date")
+	public ResponseEntity<List<Task>> getByDate(@RequestBody Task task){
+		List<Task> taskList = taskService.getAllTaskByDate(task.getDate());
+		log.info("taskList "+taskList);
+		if(!taskList.isEmpty()) {
+			return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<List<Task>>(taskList,HttpStatus.NO_CONTENT);
+		}
+	}
+	
 
 }

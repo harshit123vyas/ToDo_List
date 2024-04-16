@@ -1,5 +1,6 @@
 package com.task.todolist.serviceImp;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +83,9 @@ public class TaskServiceImp implements TaskService{
 				if(!newTask.getDescription().equals(null)) {
 					task.get().setDescription(newTask.getDescription());
 				}
+				if(!newTask.getDate().equals(null)) {
+					task.get().setDate(newTask.getDate());
+				}
 				return taskRepository.save(task.get());
 			}
 			
@@ -106,6 +110,12 @@ public class TaskServiceImp implements TaskService{
 		}
 		return false;
 		
+	}
+
+	@Override
+	public List<Task> getAllTaskByDate(LocalDate date) {
+		
+		return taskRepository.findAllTaskByDate(date);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.task.todolist.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,5 +21,7 @@ public interface TaskService {
 	public Task updateTask(Task task,Integer id);
 	
 	public boolean deleteTaskById(Integer id);
+	
+	List<Task> getAllTaskByDate(LocalDate date);
 
 }
