@@ -77,15 +77,13 @@ public class TaskServiceImp implements TaskService{
 			Optional<Task> task = taskRepository.findById(id);
 			log.info("task "+task);
 			if(task.isPresent()) {
-				if(!newTask.getTitle().equals(null)) {
+				if(!newTask.getTitle().equals(" ")) {
 					task.get().setTitle(newTask.getTitle());
 				}
-				if(!newTask.getDescription().equals(null)) {
+				if(!newTask.getDescription().equals(" ")) {
 					task.get().setDescription(newTask.getDescription());
 				}
-				if(!newTask.getDate().equals(null)) {
-					task.get().setDate(newTask.getDate());
-				}
+				
 				return taskRepository.save(task.get());
 			}
 			
