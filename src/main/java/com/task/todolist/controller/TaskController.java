@@ -32,6 +32,7 @@ public class TaskController {
 	public ResponseEntity<List<Task>> findAllTask(){
 		log.info("fetching all tasks");
 		List<Task> taskList = taskService.getAllTask();
+		log.info("taskList "+taskList);
 		if(!taskList.isEmpty()) {
 			return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);
 		}
