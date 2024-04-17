@@ -43,7 +43,7 @@ public class TaskServiceImp implements TaskService{
 		
 		try {
 			Optional<Task> task=taskRepository.findById(id);
-			if(task.isPresent()) {
+			if(!task.isEmpty()) {
 				return task.get();
 			}
 		} catch (Exception e) {
@@ -74,20 +74,20 @@ public class TaskServiceImp implements TaskService{
 	@Override
 	public Task updateTask(Task newTask, Integer id) {
 		try {
-			Task task = taskRepository.findById(id).get();
+			Optional<Task> task = taskRepository.findById(id);
 			log.info("task "+task);
 
-			if(task!=null) {
+			if(task.isPresent()) {
 				if(newTask.getTitle()!=null) {
-					task.setTitle(newTask.getTitle());
+					task.get().setTitle(newTask.getTitle());
 				}
 				if(newTask.getDescription()!=null) {
-					task.setDescription(newTask.getDescription());
+					task.get().setDescription(newTask.getDescription());
 				}
 				if(newTask.getCompletionDate()!=null) {
-					task.setCompletionDate(newTask.getCompletionDate());
+					task.get().setCompletionDate(newTask.getCompletionDate());
 				}
-					return taskRepository.save(task);
+					return taskRepository.save(task.get());
 					
 		
 			}
@@ -117,15 +117,25 @@ public class TaskServiceImp implements TaskService{
 
 	@Override
 	public List<Task> getAllRemainningTask() {
-		
-		LocalDate date=LocalDate.now();
-		return taskRepository.getAllRemainningTask(date);
+		try {
+			LocalDate date=LocalDate.now();
+			List<Task> taskList = taskRepository.getAllRemainningTask(date);
+			log.info("taskList "+taskList);
+			if(!taskList.isEmpty()) {
+				return taskList;
+			}
+			
+		} catch (Exception e) {
+			log.error("exception "+e);
+		}
+		return null;
 	}
 
 	@Override
 	public List<Task> getTaskByCreationDate(LocalDate creationDate) {
 		try {
 			List<Task> task=taskRepository.findTaskByCreationDate(creationDate);
+			log.info("taskList "+task);
 			if(!task.isEmpty()){
 				return task;
 			}

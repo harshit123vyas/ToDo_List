@@ -1,6 +1,6 @@
 package com.task.todolist.controller;
 
-import java.time.LocalDate;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,7 +67,7 @@ public class TaskController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Task> updateTask(@RequestBody Task task,@PathVariable Integer id){
+	public ResponseEntity<Task> updateTask(@RequestBody Task task, @PathVariable Integer id){
 		log.info("updating the task");
 		Task updatedTask=taskService.getTaskById(id);
 		if(updatedTask!=null) {
@@ -90,7 +90,7 @@ public class TaskController {
 		}
 	}
 	
-	@GetMapping("/date")
+	@GetMapping("/remainning")
 	public ResponseEntity<List<Task>> getRemainningTask(){
 		List<Task> taskList = taskService.getAllRemainningTask();
 		log.info("taskList "+taskList);
