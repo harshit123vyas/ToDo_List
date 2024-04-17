@@ -34,6 +34,6 @@ public class Task {
 	@CreationTimestamp
 	private LocalDate creationDate;
 	
-	private Date completionDate;
+	private LocalDate completionDate;
 
 }

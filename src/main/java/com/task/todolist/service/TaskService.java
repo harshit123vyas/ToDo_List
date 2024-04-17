@@ -26,6 +26,7 @@ public interface TaskService {
 	
 	public List<Task> getTaskByCreationDate(LocalDate creationDate);
 
+	public List<Task> getTaskByCompletionDate(LocalDate completionDate);
 	
 
 }

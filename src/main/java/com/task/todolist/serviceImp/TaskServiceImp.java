@@ -146,6 +146,22 @@ public class TaskServiceImp implements TaskService{
 		return null;
 	}
 
+	@Override
+	public List<Task> getTaskByCompletionDate(LocalDate completionDate) {
+		try {
+			List<Task> task=taskRepository.findTaskByCompletionDate(completionDate);
+			log.info("taskList "+task);
+			if(!task.isEmpty()){
+				return task;
+			}
+		} catch (Exception e) {
+			log.error("exception "+e);
+		}
+		 
+		return null;
+	}
+
+
 	
 
 }

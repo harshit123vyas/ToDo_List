@@ -114,6 +114,20 @@ public class TaskController {
 		}
 	}
 	
+
+	@GetMapping("/completionDate")
+	public ResponseEntity<List<Task>> getTaskByCompletionDate(@RequestBody Task task){
+		List<Task> taskList = taskService.getTaskByCompletionDate(task.getCompletionDate());
+		log.info("taskList "+taskList);
+		if(!taskList.isEmpty()) {
+			return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<List<Task>>(taskList,HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	
 	
 
 }
