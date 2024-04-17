@@ -122,4 +122,20 @@ public class TaskServiceImp implements TaskService{
 		return taskRepository.getAllRemainningTask(date);
 	}
 
+	@Override
+	public List<Task> getTaskByCreationDate(LocalDate creationDate) {
+		try {
+			List<Task> task=taskRepository.findTaskByCreationDate(creationDate);
+			if(!task.isEmpty()){
+				return task;
+			}
+		} catch (Exception e) {
+			log.error("exception "+e);
+		}
+		 
+		return null;
+	}
+
+	
+
 }

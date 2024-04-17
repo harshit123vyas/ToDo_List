@@ -1,5 +1,6 @@
 package com.task.todolist.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,7 +91,7 @@ public class TaskController {
 	}
 	
 	@GetMapping("/date")
-	public ResponseEntity<List<Task>> getByDate(){
+	public ResponseEntity<List<Task>> getRemainningTask(){
 		List<Task> taskList = taskService.getAllRemainningTask();
 		log.info("taskList "+taskList);
 		if(!taskList.isEmpty()) {
@@ -100,6 +101,19 @@ public class TaskController {
 			return new ResponseEntity<List<Task>>(taskList,HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	@GetMapping("/creationDate")
+	public ResponseEntity<List<Task>> getTaskByCreationDate(@RequestBody Task task){
+		List<Task> taskList = taskService.getTaskByCreationDate(task.getCreationDate());
+		log.info("taskList "+taskList);
+		if(!taskList.isEmpty()) {
+			return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<List<Task>>(taskList,HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	
 
 }

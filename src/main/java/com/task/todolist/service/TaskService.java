@@ -22,6 +22,9 @@ public interface TaskService {
 	
 	public boolean deleteTaskById(Integer id);
 	
-	List<Task> getAllRemainningTask();
+	public List<Task> getAllRemainningTask();
+	
+	public List<Task> getTaskByCreationDate(LocalDate creationDate);
+	
 
 }
