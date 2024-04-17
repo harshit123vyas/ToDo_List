@@ -1,8 +1,8 @@
 package com.task.todolist.entity;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 
